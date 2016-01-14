@@ -13,10 +13,9 @@ var server = module.exports = exports = http.createServer((req, res) => {
 
   if (req.method === 'GET' && req.url === '/time') {
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write('Today\'s date and time: ' + new Date().toString());
+    res.write(JSON.stringify({msg:'Today\'s date and time: ' + new Date().toString()}));
     return res.end(); //closes connection
   }
-
 
   if (req.method === 'GET' && req.url === '/greet/' + name) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -29,4 +28,6 @@ var server = module.exports = exports = http.createServer((req, res) => {
   return res.end();
 });
 
-server.listen(3000, () => console.log('server up'));
+server.listen(3000, () => {
+  console.log('Server up');//eslint-disable-line
+});
